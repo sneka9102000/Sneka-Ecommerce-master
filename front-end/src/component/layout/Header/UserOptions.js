@@ -21,17 +21,9 @@ const UserOptions = ({user}) => {
     const dispatch = useDispatch();
 
      const options = [
-    { icon: <ListAltIcon />, name: "Orders", func: orders },
+    
     { icon: <PersonIcon />, name: "Profile", func: account },
-    {
-      icon: (
-        <ShoppingCartIcon
-          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
-        />
-      ),
-      name: `Cart(${cartItems.length})`,
-      func: cart,
-    },
+
     { icon: <ExitToAppIcon />, name: "logout", func: logoutUser },
   ];
 
@@ -40,6 +32,19 @@ const UserOptions = ({user}) => {
           icon: <DashboardIcon />,
           name: "Dashboard",
           func: dashboard,
+        },
+        {
+          icon: <ListAltIcon />,
+          name: "Orders", 
+          func: orders,
+          }
+        );
+      }
+      if (user.role === "user") {
+        options.unshift({
+          icon: <ShoppingCartIcon />,
+          name: "Cart",
+          func: cart,
         });
       }
 
@@ -48,8 +53,9 @@ const UserOptions = ({user}) => {
       }
 
       function orders() {
-        navigate("/orders");
+        navigate("/admin/orders");
       }
+     
       function cart() {
         navigate("/cart");
       }

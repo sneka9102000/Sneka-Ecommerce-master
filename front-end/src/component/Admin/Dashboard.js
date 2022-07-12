@@ -72,10 +72,10 @@ const Dashboard = () => {
               <p>Orders</p>
               <p>{orders && orders.length}</p>
             </Link>
-            <Link to="/admin/users">
+            {/* <Link to="/admin/users">
               <p>Users</p>
               <p>{users && users.length}</p>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
