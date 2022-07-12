@@ -25,11 +25,12 @@ const ProductDetails = () => {
       )
 
     useEffect(()=>{
-      if(error){
-        alert.error(error);
-        dispatch(clearErrors());
-      }
-        dispatch(getProductDetails(id));
+      dispatch(getProductDetails(id));
+      // if(error){
+      //   alert.error(error);
+      //   dispatch(clearErrors());
+      // }
+
     },[dispatch,id,error,alert]);
 
     const options = {
@@ -86,33 +87,31 @@ const ProductDetails = () => {
         alert.error(error);
         dispatch(clearErrors());
       }
-  
-      // // if (reviewError) {
-      // //   alert.error(reviewError);
-      // //   dispatch(clearErrors());
-      // // }import Products from "./Products";
 
-  
-      // // if (success) {
-      // //   alert.success("Review Submitted Successfully");
-      // //   dispatch({ type: NEW_REVIEW_RESET });
-      // // }
       dispatch(getProductDetails(id));
-    }, [dispatch,id,error, alert]);
+    }, [dispatch,id,error,alert]);
     
-    console.log(product)
+    // console.log("product",product.images[0].url)
     if(product)
     {
-      console.log(product.reviews)
       return (
         <Fragment>
             <div className="ProductDetails"> 
               <div>
-              <img
+              {/* <img
                       className="CarouselImage"
                       src={product.images[0].url}
                       alt={`image`}
+                    /> */}
+                {product.images &&
+                  product.images.map((item, i) => (
+                    <img
+                      className="CarouselImage"
+                      key={i}
+                      src={item.url}
+                      alt={`${i} Slide`}
                     />
+                  ))}
               </div>
               <div>
               <div className="detailsBlock-1">
