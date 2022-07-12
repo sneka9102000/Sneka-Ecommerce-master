@@ -39,6 +39,13 @@ const UpdateProduct = ({ match }) => {
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
+  // const [state, setState] = useState({
+  //   name: "",
+  //   price: "",
+  //   description: "",
+  //   password: "",
+  // });
+
   const categories = [
     "Titan",
     "Sonata",
@@ -57,14 +64,18 @@ const UpdateProduct = ({ match }) => {
   useEffect(() => {
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
-    // } 
-    // else {
+    } 
+    else {
+
       setName(product.name);
       setDescription(product.description);
       setPrice(product.price);
       setCategory(product.category);
       setStock(product.Stock);
       setOldImages(product.images);
+      console.log(product.name)
+
+
     }
     if (error) {
       alert.error(error);
@@ -91,21 +102,35 @@ const UpdateProduct = ({ match }) => {
     updateError,
   ]);
 
+  console.log("product",product)
+
   const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
+    // const myForm = new FormData();
 
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", Stock);
+    // myForm.set("name", name);
+    // myForm.set("price", price);
+    // myForm.set("description", description);
+    // myForm.set("category", category);
+    // myForm.set("Stock", Stock);
 
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
-    dispatch(updateProduct(productId, myForm));
+    // images.forEach((image) => {
+    //   myForm.append("images", image);
+    // });
+
+    console.log(name,price,description,category,Stock,)
+    let productObj={
+      "name":name,
+      "price":price,
+      "description":description,
+      "category":category,
+      "Stock":Stock,
+      "images":images
+    }
+
+    dispatch(updateProduct(productId, productObj));
+    
   };
 
   const updateProductImagesChange = (e) => {
@@ -230,7 +255,7 @@ const UpdateProduct = ({ match }) => {
               type="submit"
               disabled={loading ? true : false}
             >
-              Create
+              Update
             </Button>
           </form>
         </div>

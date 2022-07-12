@@ -12,8 +12,9 @@ router
   .route("/admin/products")
   .get(isAuthenticatedUser, authorizeRoles("admin"),productController.getAdminProducts);
 
-router.route("/product/new").post(isAuthenticatedUser,authorizeRoles("admin"),productController.createProduct)
-router.route("/admin/product/:id").put(isAuthenticatedUser,authorizeRoles("admin"),productController.updateProduct).delete(isAuthenticatedUser,authorizeRoles("admin"),productController.deleteProduct)
+router.route("/admin/product/new").post(isAuthenticatedUser, authorizeRoles("admin"),productController.createProduct)
+router.route("/admin/product/:id").put(productController.updateProduct)
+router.route("/admin/product/:id").delete(productController.deleteProduct)
 
 router.route("/product/:id").get(productController.getProductDetails);
 

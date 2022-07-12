@@ -49,22 +49,22 @@ const productSchema = mongoose.Schema({
     { 
       name: {
         type: String,
-        required: true,
+        required: false,
       },
       rating: {
         type: Number,
-        required: true,
+        required: false,
       },
       comment: {
         type: String,
-        required: true,
+        required: false,
       },
     },
   ],
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: true,
+    required: false,
   },
 
   createdAt: {

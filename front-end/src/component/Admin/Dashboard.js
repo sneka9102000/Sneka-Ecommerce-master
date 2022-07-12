@@ -23,16 +23,16 @@ const Dashboard = () => {
 
   let outOfStock = 0;
 
-    orders &&
-      orders.forEach((item) => {
-        totalAmount += item.totalPrice;
-      });
-  products &&
-    products.forEach((item) => {
-      if (item.Stock === 0) {
-        outOfStock += 1;
-      }
-    });
+  //   orders &&
+  //     orders.forEach((item) => {
+  //       totalAmount += item.totalPrice;
+  //     });
+  // products &&
+  //   products.forEach((item) => {
+  //     if (item.Stock === 0) {
+  //       outOfStock += 1;
+  //     }
+  //   });
 
   useEffect(() => {
     
@@ -41,11 +41,11 @@ const Dashboard = () => {
       dispatch(getAllUsers());
     },[dispatch]);
   
-    let totalAmount = 0;
-    orders &&
-      orders.forEach((item) => {
-        totalAmount += item.totalPrice;
-      });
+    // let totalAmount = 0;
+    // orders &&
+    //   orders.forEach((item) => {
+    //     totalAmount += item.totalPrice;
+    //   });
   
 
 

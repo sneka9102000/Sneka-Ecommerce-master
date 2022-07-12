@@ -56,7 +56,7 @@ const NewProduct = ({ history }) => {
 
     if (success) {
       alert.success("Product Created Successfully");
-     // navigate("/admin/dashboard");
+     navigate("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error,success]);

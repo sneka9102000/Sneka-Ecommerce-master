@@ -6,7 +6,9 @@ const cloudinary=require("cloudinary");
 
 class ProductController {
   createProduct = catchAsyncErrors(async (req, res, next) => {
+    
   try{
+    console.log(req.body)
     let images = [];
 
   if (typeof req.body.images === "string") {
@@ -29,16 +31,18 @@ class ProductController {
   }
 
   req.body.images = imagesLinks;
-  req.body.user = req.user.id;
+  console.log(imagesLinks)
+  // req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
-
+  console.log("created",product)
   res.status(201).json({
     success: true,
     product,
   });
   }
   catch (err) {
+    console.log("Error",err)
     res.status(500).json({error: err})
   }
 });
@@ -107,17 +111,23 @@ catch (err) {
 //get product details
 
 getProductDetails = catchAsyncErrors(async (req, res, next) => {
+  console.log("came")
 
 try{ const product = await Product.findById(req.params.id);
+ // console.log("intial console",product)
 
-    if(!product){
-        return next(new ErrorHandler("Product not found",404));
-    }
+    // if(!product){
+    //   console.log("product not found")
+    //     return next(new ErrorHandler("Product not found",404));
+    // }
+    // else{
+     // conosle.log("product found",product)
+      res.status(200).json({
+          success: true,
+          product
+      });
+    // }
 
-    res.status(200).json({
-        success: true,
-        product,
-    });
   }
   catch (err) {
     res.status(500).json({error: err})
@@ -127,11 +137,14 @@ try{ const product = await Product.findById(req.params.id);
 // Update Product -- Admin
 
 updateProduct = catchAsyncErrors(async (req, res, next) => {
-  try{let product = await Product.findById(req.params.id);
+  try{
+    console.log(req);
+    let product = await Product.findById(req.params.id);
+    console.log(product)
 
-  if (!product) {
-    return next(new ErrorHander("Product not found", 404));
-  }
+  // if (!product) {
+  //   return next(new ErrorHandler("Product not found", 404));
+  // }
 
   // Images Start Here
   let images = [];
@@ -169,7 +182,7 @@ updateProduct = catchAsyncErrors(async (req, res, next) => {
     runValidators: true,
     useFindAndModify: false,
   });
-
+  console.log("success code")
   res.status(200).json({
     success: true,
     product,
@@ -183,10 +196,11 @@ catch (err) {
 // Delete Product
 
 deleteProduct = catchAsyncErrors(async (req, res, next) => {
+ // console.log("product came")
   try{const product = await Product.findById(req.params.id);
 
   if (!product) {
-    return next(new ErrorHander("Product not found", 404));
+    return next(new ErrorHandler("Product not found", 404));
   }
 
   // Deleting Images From Cloudinary
@@ -202,6 +216,7 @@ deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 }
 catch (err) {
+  console.log("ERROR",err)
   res.status(500).json({error: err})
 }
 });
