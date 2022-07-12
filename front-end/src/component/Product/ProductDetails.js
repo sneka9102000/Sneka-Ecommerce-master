@@ -20,7 +20,7 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
     const {id}=useParams();
     const alert = useAlert();
-    const{products,error} = useSelector(
+    const{product,error} = useSelector(
       (state)=>state.productDetails
       )
 
@@ -48,7 +48,7 @@ const ProductDetails = () => {
 
 
     const increaseQuantity = () => {
-      if (products.Stock <= quantity) return;
+      if (product.Stock <= quantity) return;
   
       const qty = quantity + 1;
       setQuantity(qty);
@@ -97,43 +97,42 @@ const ProductDetails = () => {
       // //   alert.success("Review Submitted Successfully");
       // //   dispatch({ type: NEW_REVIEW_RESET });
       // // }
-      // dispatch(getProductDetails(id));
-    }, [dispatch,id, error, alert]);
-  
-
-    if(products)
+      dispatch(getProductDetails(id));
+    }, [dispatch,id,error, alert]);
+    
+    console.log(product)
+    if(product)
     {
-      console.log(products.reviews)
+      console.log(product.reviews)
       return (
         <Fragment>
             <div className="ProductDetails"> 
               <div>
               <img
                       className="CarouselImage"
-                      src={products.images[0].url}
+                      src={product.images[0].url}
                       alt={`image`}
                     />
               </div>
               <div>
               <div className="detailsBlock-1">
-                <h2>{products.name}</h2>
-                <p>Product # {products._id}</p>
+                <h2>{product.name}</h2>
+                <p>Product # {product._id}</p>
               </div>
               <div className="detailsBlock-2">
                 <ReactStars {...options} />
-                <span >({products.numOfReviews} Reviews)</span>
+                <span >({product.numOfReviews} Reviews)</span>
               </div>
               <div className="detailsBlock-3">
-                <h1>{`₹${products.price}`}</h1>
+                <h1>{`₹${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
                     <button onClick={decreaseQuantity}>-</button>{quantity}
-                    {/* <input readOnly type= "number" value={quantity} /> */}
                     <button onClick={increaseQuantity}>+</button>
                   </div>
                   <button 
                   onClick={addToCartHandler}
-                  disabled={products.Stock < 1 ? true : false}
+                  disabled={product.Stock < 1 ? true : false}
                   >
                     Add to Cart
                   </button>
@@ -141,14 +140,14 @@ const ProductDetails = () => {
 
                 <p>
                   Status:
-                  <b className={products.Stock < 1 ? "redColor" : "greenColor"}>
-                    {products.Stock < 1 ? "OutOfStock" : "InStock"}
+                  <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
+                    {product.Stock < 1 ? "OutOfStock" : "InStock"}
                   </b>
                 </p>
               </div>
 
               <div className="detailsBlock-4">
-                Description : <p>{products.description}</p>
+                Description : <p>{product.description}</p>
               </div>
 
               <button onClick={submitReviewToggle} className="submitReview">
@@ -190,10 +189,10 @@ const ProductDetails = () => {
             </DialogActions>
           </Dialog>
 
-          {products.reviews && products.reviews[0] ? (
+          {product.reviews && product.reviews[0] ? (
             <div className="reviews">
-              {products.reviews &&
-                products.reviews.map((review) => (
+              {product.reviews &&
+                product.reviews.map((review) => (
                   <ReviewCard key={review._id} review={review} />
                 ))}
             </div>
