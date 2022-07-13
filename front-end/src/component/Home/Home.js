@@ -29,13 +29,11 @@ const Home = () => {
       ) : (
         <div>
           <MetaData title="WATCH WIZARD" />
-{/* <button style={{display:"inline",position:"absolute",float:"right"}} >click</button> */}
-
           <div className="banner">
             <p>WELCOME TO WATCH WIZARD</p>
             <h1>FIND AMAZING BRANDS BELOW</h1>
 
-            <a href="#container">
+            <a href="#brands">
               <button>
                 Scroll 
               </button>
@@ -44,7 +42,7 @@ const Home = () => {
 
           <h2 className="homeHeading">OUR EXCLUSIVE BRANDS</h2>
 
-          <div className="container" id="container">
+          <div className="brands" id="brands">
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />

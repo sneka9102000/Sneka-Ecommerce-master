@@ -2,7 +2,7 @@ import React, { Fragment, useEffect,useState } from "react";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails,clearErrors,newReview } from "../../actions/productAction";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import { useAlert } from "react-alert";
@@ -18,11 +18,16 @@ import {
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
+
+const navigate = useNavigate();
     const {id}=useParams();
     const alert = useAlert();
     const{product,error} = useSelector(
       (state)=>state.productDetails
       )
+      const{isAuthenticated} = useSelector(
+        (state)=>state.user
+        )
 
     useEffect(()=>{
       dispatch(getProductDetails(id));
@@ -63,8 +68,15 @@ const ProductDetails = () => {
     };
 
     const addToCartHandler = () => {
-      dispatch(addItemsToCart(id, quantity));
-      alert.success("Item Added To Cart");
+      if(isAuthenticated)
+      {
+        dispatch(addItemsToCart(id, quantity));
+        alert.success("Item Added To Cart");
+      }
+      else
+      {
+        navigate("/login")
+      }
     };
     const submitReviewToggle = () => {
       open ? setOpen(false) : setOpen(true);
@@ -92,6 +104,7 @@ const ProductDetails = () => {
     }, [dispatch,id,error,alert]);
     
     // console.log("product",product.images[0].url)
+    console.log("authenticated",isAuthenticated)
     if(product)
     {
       return (
@@ -106,7 +119,7 @@ const ProductDetails = () => {
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
-                      className="CarouselImage"
+                      className="SingleProduct"
                       key={i}
                       src={item.url}
                       alt={`${i} Slide`}

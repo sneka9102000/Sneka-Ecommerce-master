@@ -33,16 +33,7 @@ import UsersList from "./component/Admin/UsersList";
 
 
 function App(){
-  const { isAuthenticated, user } = useSelector((state) => state.user);
-
-  // React.useEffect(() => {
-  //   WebFont.load({
-  //     google: {
-  //       families: ["Roboto", "Droid Sans", "Chilanka"],
-  //     },
-  //   });
-  //   // store.dispatch(loadUser());
-  //   }, [])  
+  const { isAuthenticated, user } = useSelector((state) => state.user)
 
     return (
       <Router>
@@ -56,24 +47,10 @@ function App(){
          <Route extact path="/products" element={<Products/>} />
          <Route extact path="/products/:keyword" element={<Products match/>} />
          <Route extact path="/search" element={<Search/>} />
-
          <Route exact path="/account" element={<Profile/>} />
          <Route exact path="/me/update" element={<UpdateProfile/>} />
          <Route exact path="/password/update" element={<UpdatePassword/>} />
-
-
-         {/* <Route exact path="" /> */}
-
-         {/* <Route exact path='/account' element={<ProtectedRoute/>}>
-            <Route exact path='/account' element={<Profile />}/>
-          </Route> */}
-          {/* <Route exact path='/account'  >
-            <Profile />
-          </Route> */}
-
-          
          <Route extact path="/cart" element={<Cart/>} />
- 
          <Route extact path="/login" element={<LoginSignUp/>} />
          <Route extact path="/shipping" element={<Shipping/>} />
          <Route extact path="/order/confirm" element={<ConfirmOrder/>} />

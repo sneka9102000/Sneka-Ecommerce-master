@@ -68,13 +68,9 @@ const Dashboard = () => {
               <p>Product</p>
               <p>{products&&products.length}</p>
             </Link>
-            <Link to="/admin/orders">
+            {/* <Link to="/admin/orders">
               <p>Orders</p>
               <p>{orders && orders.length}</p>
-            </Link>
-            {/* <Link to="/admin/users">
-              <p>Users</p>
-              <p>{users && users.length}</p>
             </Link> */}
           </div>
         </div>
@@ -84,12 +80,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
-        {/* <div className="lineChart">
-          <Line data={lineState} />
-        </div>
-
-        <div className="doughnutChart">
-          <Doughnut data={doughnutState} />
-        </div> */}

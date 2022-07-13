@@ -61,7 +61,7 @@
     color: rgb(0, 0, 0, 0.7);
   }
   
-  .container {
+  .brands {
     display: flex;
     margin: 2vmax auto;
     width: 80vw;

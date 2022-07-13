@@ -217,7 +217,7 @@ const LoginSignUp = ({ location }) => {
               /><br />
               <strong >{loginPasswordError}</strong>
             </div>
-            <Link to="/password/forgot">Forget Password ?</Link>
+            {/* <Link to="/password/forgot">Forget Password ?</Link> */}
             <input type="submit" value="Login" className="loginBtn" />
           </form>
           <form
