@@ -302,7 +302,6 @@ const LoginSignUp = ({ location }) => {
             </div>
 
             <div id="registerImage">
-              {/* <img src={avatarPreview} alt="Avatar Preview" /> */}
               <input
                 type="file"
                 name="avatar"
