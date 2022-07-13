@@ -55,13 +55,13 @@ const UpdateProfile = () => {
     }
 
     if (error) {
-      // alert.error(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
       alert.success("Profile Updated Successfully");
-      // dispatch(loadUser());
+     
 
       dispatch(logout());
       navigate('/')

@@ -25,6 +25,16 @@ const userSchema = new mongoose.Schema({
       select: false,
       trim:true
     },
+    phone: {
+      type: String,
+      required: [true, "Please Enter Your PhoneNumber"],
+      maxLength: [10, "Number cannot exceed 10 digits"],
+    },
+    address: {
+      type: String,
+      required: [true, "Please Enter Your Address"],
+      maxLength: [30, "Address cannot exceed 30 characters"],
+    },
     avatar: {
       public_id: {
         type: String,

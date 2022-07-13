@@ -18,7 +18,10 @@
 
 .signUpName,
 .signUpEmail,
-.signUpPassword {
+.signUpPassword,
+.signUpPhone,
+.signUpAddress,
+.registerImage {
   color:red;
   display: inline !important;
 }
@@ -113,7 +116,7 @@
   color: black;
 }
 
-#registerImage>img {
+/* #registerImage>img {
   width: 3vmax;
   border-radius: 100%;
 }
@@ -139,7 +142,7 @@
 
 #registerImage>input::file-selector-button:hover {
   background-color: rgb(235, 235, 235);
-}
+} */
 
 .loginBtn,
 .signUpBtn {

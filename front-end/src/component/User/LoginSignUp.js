@@ -3,8 +3,10 @@ import "../User/User.css";
 import Loader from "../layout/Loader/loader";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PhoneOutlined from "@material-ui/icons/PhoneOutlined"
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
+import HomeOutlined from "@material-ui/icons/HomeOutlined";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +24,9 @@ const LoginSignUp = ({ location }) => {
   let [emailError, setEmailError] = useState("");
   let [passwordError, setPasswordError] = useState("");
   let [nameError, setNameError] = useState("");
+  let [phoneError,setPhoneError] = useState("");
+  let [addressError,setAddressError] = useState("");
+
 
   let [loginEmailError, setLoginEmailError] = useState("");
   let [loginPasswordError, setLoginPasswordError] = useState("");
@@ -46,7 +51,7 @@ const LoginSignUp = ({ location }) => {
     password: "",
   });
 
-  const { name, email, password } = user;
+  const { name, email, password,phone,address} = user;
 
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -59,10 +64,16 @@ const LoginSignUp = ({ location }) => {
     let nameError = error.nameError;
     let emailError = error.emailError;
     let passwordError = error.passwordError;
+    let phoneError = error.phoneError;
+    let addressError = error.addressError
+
 
     const nameField = document.getElementById('name');
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
+    const phoneField = document.getElementById('phone');
+    const addressField = document.getElementById('address');
+
 
     if(nameError) {
         setNameError(nameError);
@@ -75,8 +86,14 @@ const LoginSignUp = ({ location }) => {
     if (passwordError) {
         setPasswordError(passwordError)
     }
+    if(phoneError){
+        setPhoneError(phoneError)
+    }
+    if(addressError){
+        setAddressError(addressError)
+    }
 
-    if(nameError || emailError || passwordError) {
+    if(nameError || emailError || passwordError || phoneError || addressError) {
         return false;
     }
 
@@ -85,8 +102,6 @@ const LoginSignUp = ({ location }) => {
 }
 
   const validLogin = () => {
-
-    // console.log("Cred : " + loginEmail, loginPassword);
 
     const error = ValidateLogin(loginEmail, loginPassword)
 
@@ -217,7 +232,6 @@ const LoginSignUp = ({ location }) => {
               /><br />
               <strong >{loginPasswordError}</strong>
             </div>
-            {/* <Link to="/password/forgot">Forget Password ?</Link> */}
             <input type="submit" value="Login" className="loginBtn" />
           </form>
           <form
@@ -250,6 +264,30 @@ const LoginSignUp = ({ location }) => {
               />
               <strong>{emailError}</strong>
             </div>
+            <div className="signUpPhone">
+              <PhoneOutlined style={{ margin: "1% 0 0 0" }}/>
+              <input
+                type="phone"
+                placeholder="Enter your Phone Number"
+                id="userphone"
+                name="phone"
+                value={phone}
+                onChange={registerDataChange}
+              />
+              <strong>{phoneError}</strong>
+            </div>
+            <div className="signUpAddress">
+              <HomeOutlined style={{ margin: "1% 0 0 0" }}/>
+              <input
+                type="address"
+                placeholder="Enter your Address"
+                id="useraddress"
+                name="address"
+                value={address}
+                onChange={registerDataChange}
+              />
+              <strong>{addressError}</strong>
+            </div>
             <div className="signUpPassword">
               <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
               <input
@@ -264,7 +302,7 @@ const LoginSignUp = ({ location }) => {
             </div>
 
             <div id="registerImage">
-              <img src={avatarPreview} alt="Avatar Preview" />
+              {/* <img src={avatarPreview} alt="Avatar Preview" /> */}
               <input
                 type="file"
                 name="avatar"

@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import ProtectedRoute from "./component/Routes/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
-import UpdatePassword from "./component/User/UpdatePassword.js";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
@@ -49,7 +48,6 @@ function App(){
          <Route extact path="/search" element={<Search/>} />
          <Route exact path="/account" element={<Profile/>} />
          <Route exact path="/me/update" element={<UpdateProfile/>} />
-         <Route exact path="/password/update" element={<UpdatePassword/>} />
          <Route extact path="/cart" element={<Cart/>} />
          <Route extact path="/login" element={<LoginSignUp/>} />
          <Route extact path="/shipping" element={<Shipping/>} />
