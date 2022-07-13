@@ -4,7 +4,9 @@ import { ReactNavbar} from "overlay-navbar"
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { useSelector } from "react-redux";
+
 
 
 const options = {
@@ -33,13 +35,15 @@ const options = {
 };
 
 const Header = () => {
+  
+
   return (
   <div>
    <div style={{display:"inline",position:"absolute",float:"right",margin:"0 0 0 80%",padding:"0 0 0 0",height:"100px"}}>
     <nav style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
   <nav style={{float:"right",display:"inline"}}>
   <Link to="/search"><SearchIcon style={{fontSize:"50px"}}/></Link>
-  <Link to="/cart"><ShoppingCartIcon style={{fontSize:"50px"}}/></Link>
+  <Link to='/cart' ><ShoppingCartIcon style={{fontSize:"50px"}}/></Link>
   <Link to="/login"><AccountCircleIcon style={{fontSize:"50px"}}/></Link>
    </nav>
  </nav> 
