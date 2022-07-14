@@ -4,8 +4,9 @@ const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const User = require("../models/userModel")
 
+class Authentication{
 
-exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
+isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   console.log("called")
   const token = req.header("Authorization");
   if (!token) {
@@ -21,7 +22,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 
-exports.authorizeRoles = (...roles) => {
+authorizeRoles = (...roles) => {
   return (req, res, next) => {
     // console.log(req.user.role)
     if (roles != req.user.role) {
@@ -37,3 +38,5 @@ exports.authorizeRoles = (...roles) => {
     next();
   };
 };
+}
+module.exports = Authentication;
