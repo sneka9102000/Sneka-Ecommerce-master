@@ -6,6 +6,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 class OrderController {
 
   // Create new Order
+
   newOrder = catchAsyncErrors(async (req, res, next) => {
   try{
     const {
@@ -41,6 +42,7 @@ class OrderController {
 
   });
 
+
   // get Single Order
   getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   try{
@@ -63,12 +65,12 @@ class OrderController {
   }
   });
 
+
   // get logged in user  Orders
   userOrders = catchAsyncErrors(async (req, res, next) => {
   try{
     const orders = await Order.find({ user: req.user._id });
-console.log("orders",orders)
-    res.status(200).json({
+      res.status(200).json({
       success: true,
       orders,
     });
@@ -78,13 +80,13 @@ console.log("orders",orders)
   }
   });
 
+
   // get all Orders -- Admin
   getAllOrders = catchAsyncErrors(async (req, res, next) => {
+
   try{
     const orders = await Order.find();
-//console.log("orders",orders)
     let totalAmount = 0;
-
     orders.forEach((order) => {
       totalAmount += order.totalPrice;
     });
@@ -99,6 +101,7 @@ console.log("orders",orders)
     res.status(500).json({error: err})
   }
   });
+
 
   // update Order Status -- Admin
   updateOrder = catchAsyncErrors(async (req, res, next) => {
@@ -147,6 +150,7 @@ console.log("orders",orders)
     res.status(500).json({error: err})
   }
   }
+  
 
   // delete Order -- Admin
   deleteOrder = catchAsyncErrors(async (req, res, next) => {

@@ -61,10 +61,9 @@ userSchema.pre("save",async function(next){
     if(!this.isModified("password")){
         next();
     }
-    //console.log("this.pass ",this.password)
     this.password = bcrypt.hash(this.password,10)
-    //console.log(bcrypt.hash(this.password,10))
 });
+
 
 //jwt token 
 userSchema.methods.getJWTToken = function (){
@@ -74,16 +73,7 @@ userSchema.methods.getJWTToken = function (){
 };
 
 //Compare Password
-userSchema.methods.comparePassword =  async function (enteredPassword) {
-  console.log(enteredPassword+" "+this.password)
-  // if(enteredPassword==this.password)
-  // {
-  //   return true
-  // }
-  // else
-  // {
-  //   return false
-  // }
+userSchema.methods.comparePassword =  async function (enteredPassword) { 
   return await bcrypt.compare(enteredPassword,this.password);
 };
 

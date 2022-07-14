@@ -7,7 +7,7 @@ const User = require("../models/userModel")
 class Authentication{
 
 isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
-  console.log("called")
+
   const token = req.header("Authorization");
   if (!token) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
@@ -17,14 +17,12 @@ isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
     req.user = user;
     console.log(user)
     next();
-    // console.log(err)
   })
 });
 
 
 authorizeRoles = (...roles) => {
   return (req, res, next) => {
-    // console.log(req.user.role)
     if (roles != req.user.role) {
     console.log("not authorized")
       return next(

@@ -87,6 +87,7 @@ class UserController {
   }
   });
 
+  
 
   getUserDetails = catchAsyncErrors(async (req, res, next) => {
 

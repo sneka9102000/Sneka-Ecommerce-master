@@ -5,8 +5,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors")
 const cloudinary=require("cloudinary");
 
 class ProductController {
-  createProduct = catchAsyncErrors(async (req, res, next) => {
-    
+  createProduct = catchAsyncErrors(async (req, res, next) => { 
   try{
     console.log(req.body)
     let images = [];
@@ -31,9 +30,6 @@ class ProductController {
   }
 
   req.body.images = imagesLinks;
-  console.log(imagesLinks)
-  // req.body.user = req.user.id;
-
   const product = await Product.create(req.body);
   console.log("created",product)
   res.status(201).json({
@@ -46,6 +42,8 @@ class ProductController {
     res.status(500).json({error: err})
   }
 });
+
+
 // Get All Product
 getAllProducts = catchAsyncErrors(async (req, res, next) => {
 
@@ -79,9 +77,7 @@ catch (err) {
 
 
 //GET ALL PRODUCTS--admin
-
 getAllProducts =catchAsyncErrors(async(req,res,next) => {
-
 try{ const  products = await Product.find();
     res.status(200).json ({
         sucess:true,
@@ -92,6 +88,8 @@ try{ const  products = await Product.find();
     res.status(500).json({error: err})
   }
 });
+
+
 
 // Get All Product (Admin)
 getAdminProducts = catchAsyncErrors(async (req, res, next) => {
@@ -108,46 +106,30 @@ catch (err) {
   res.status(500).json({error: err})
 }
 });
+
+
 //get product details
 
 getProductDetails = catchAsyncErrors(async (req, res, next) => {
   console.log("came")
 
 try{ const product = await Product.findById(req.params.id);
- // console.log("intial console",product)
-
-    // if(!product){
-    //   console.log("product not found")
-    //     return next(new ErrorHandler("Product not found",404));
-    // }
-    // else{
-     // conosle.log("product found",product)
       res.status(200).json({
           success: true,
           product
       });
-    // }
-
   }
   catch (err) {
     res.status(500).json({error: err})
   }
 });
 
-// Update Product -- Admin
 
+// Update Product -- Admin
 updateProduct = catchAsyncErrors(async (req, res, next) => {
   try{
-    console.log(req);
     let product = await Product.findById(req.params.id);
-    console.log(product)
-
-  // if (!product) {
-  //   return next(new ErrorHandler("Product not found", 404));
-  // }
-
-  // Images Start Here
-  let images = [];
+    let images = [];
 
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
@@ -156,7 +138,7 @@ updateProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (images !== undefined) {
-    // Deleting Images From Cloudinary
+
     for (let i = 0; i < product.images.length; i++) {
       await cloudinary.v2.uploader.destroy(product.images[i].public_id);
     }
@@ -193,17 +175,16 @@ catch (err) {
 }
 });
 
+
 // Delete Product
 
 deleteProduct = catchAsyncErrors(async (req, res, next) => {
- // console.log("product came")
   try{const product = await Product.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHandler("Product not found", 404));
   }
 
-  // Deleting Images From Cloudinary
   for (let i = 0; i < product.images.length; i++) {
     await cloudinary.v2.uploader.destroy(product.images[i].public_id);
   }
@@ -220,6 +201,7 @@ catch (err) {
   res.status(500).json({error: err})
 }
 });
+
 
 // Create New Review or Update the review
 createProductReview = catchAsyncErrors(async (req, res, next) => {
@@ -266,8 +248,9 @@ createProductReview = catchAsyncErrors(async (req, res, next) => {
  catch (err) {
   res.status(500).json({error: err})
 }
-
  });
+
+
 
   // Get All Reviews of a product
 getProductReviews = catchAsyncErrors(async (req, res, next) => {
@@ -286,6 +269,8 @@ getProductReviews = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({error: err})
   }
   });
+
+  
 
   // Delete Review
 deleteReview = catchAsyncErrors(async (req, res, next) => {
