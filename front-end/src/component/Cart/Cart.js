@@ -12,6 +12,7 @@ const Cart = ({ history }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  
   const{isAuthenticated} = useSelector(
     (state)=>state.user
     )
