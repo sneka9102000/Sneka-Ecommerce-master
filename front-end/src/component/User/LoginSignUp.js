@@ -15,7 +15,6 @@ import ValidateLogin from "../../utils/validateLogin";
 import ValidateRegister from "../../utils/validateRegister";
 
 
-
 const LoginSignUp = ({ location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();

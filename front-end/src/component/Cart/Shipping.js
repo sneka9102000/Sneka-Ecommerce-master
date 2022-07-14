@@ -61,7 +61,7 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="Address"
                 required
-                value={address}
+                // value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
@@ -72,7 +72,7 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="City"
                 required
-                value={city}
+                // value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
             </div>
@@ -83,7 +83,7 @@ const Shipping = ({ history }) => {
                 type="number"
                 placeholder="Pin Code"
                 required
-                value={pinCode}
+                // value={pinCode}
                 onChange={(e) => setPinCode(e.target.value)}
               />
             </div>
@@ -94,7 +94,7 @@ const Shipping = ({ history }) => {
                 type="number"
                 placeholder="Phone Number"
                 required
-                value={phoneNo}
+                // value={phoneNo}
                 onChange={(e) => setPhoneNo(e.target.value)}
                 size="10"
               />
@@ -102,10 +102,9 @@ const Shipping = ({ history }) => {
 
             <div>
               <PublicIcon />
-
               <select
                 required
-                value={country}
+                // value={country}
                 onChange={(e) => setCountry(e.target.value)}
               >
                 <option value="">Country</option>
@@ -124,7 +123,7 @@ const Shipping = ({ history }) => {
 
                 <select
                   required
-                  value={state}
+                  // value={state}
                   onChange={(e) => setState(e.target.value)}
                 >
                   <option value="">State</option>
