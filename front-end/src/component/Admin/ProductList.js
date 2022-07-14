@@ -17,13 +17,11 @@ import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 
 const ProductList = ({ }) => {
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-
   const { error, products } = useSelector((state) => state.products);
-
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.product
   );
@@ -33,7 +31,6 @@ const ProductList = ({ }) => {
   };
 
   useEffect(() => {
-  //  // console.log("hi")
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -51,9 +48,7 @@ const ProductList = ({ }) => {
     }
 
     dispatch(getAdminProduct());
-  // }, [alert, error, deleteError,isDeleted]);
   },[dispatch,alert, error, deleteError,isDeleted]);
-  console.log(products)
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
@@ -93,7 +88,6 @@ const ProductList = ({ }) => {
             <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
-
             <Button
               onClick={() =>
                 deleteProductHandler(params.getValue(params.id, "id"))
@@ -122,7 +116,6 @@ const ProductList = ({ }) => {
   return (
     <Fragment>
       <MetaData title={`ALL PRODUCTS - Admin`} />
-
       <div className="dashboard">
         <SideBar />
         <div className="productListContainer">

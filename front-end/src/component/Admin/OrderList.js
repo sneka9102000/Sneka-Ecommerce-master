@@ -16,14 +16,11 @@ import {
 } from "../../actions/orderAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 
-const OrderList = ({ history }) => {
+  const OrderList = ({ history }) => {
   const dispatch = useDispatch();
-
   const alert = useAlert();
   const navigate=useNavigate();
-
   const { error, orders } = useSelector((state) => state.allOrders);
-
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
   const deleteOrderHandler = (id) => {
@@ -52,7 +49,6 @@ const OrderList = ({ history }) => {
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
-
     {
       field: "status",
       headerName: "Status",
@@ -71,7 +67,6 @@ const OrderList = ({ history }) => {
       minWidth: 150,
       flex: 0.4,
     },
-
     {
       field: "amount",
       headerName: "Amount",
@@ -79,7 +74,6 @@ const OrderList = ({ history }) => {
       minWidth: 270,
       flex: 0.5,
     },
-
     {
       field: "actions",
       flex: 0.3,

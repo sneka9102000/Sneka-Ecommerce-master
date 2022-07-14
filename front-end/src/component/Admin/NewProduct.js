@@ -18,9 +18,7 @@ const NewProduct = ({ history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate=useNavigate();
-
   const { loading, error, success } = useSelector((state) => state.newProduct);
-
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
@@ -47,7 +45,6 @@ const NewProduct = ({ history }) => {
     images: ""
   });
 
-  // const { name, description, price, category,  Stock} = user;
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -56,10 +53,12 @@ const NewProduct = ({ history }) => {
 
     if (success) {
       alert.success("Product Created Successfully");
-     navigate("/admin/dashboard");
+      navigate("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error,success]);
+
+
 
   const createProductSubmitHandler = (e) => {
     e.preventDefault();
@@ -76,16 +75,7 @@ const NewProduct = ({ history }) => {
       myForm.append("images", image);
     });
 
-    // setProduct({
-    //   name:name,
-    //   price:price,
-    //   description:description,
-    //   category:category,
-    //   Stock:Stock,
-    //   images:images
-
-    // })
-    console.log(name,price,description,category,Stock,)
+  
     let productObj={
       "name":name,
       "price":price,

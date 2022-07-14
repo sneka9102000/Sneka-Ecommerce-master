@@ -82,19 +82,13 @@ export const createProduct = (productData) => async (dispatch) => {
   console.log("form-data",productData)
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
-
-    // const config = {
-    //   headers: { "Content-Type": "application/json" },
-    // };
     const token=localStorage.getItem('usersAccessToken')
-
     const config = { headers: { "Content-Type": "application/json","Authorization":token } };
     const { data } = await axios.post(
       `http://localhost:5050/api/v1/admin/product/new`,
       productData,
       config
     );
-      //console.log("RESPONSE",data)
     dispatch({
       type: NEW_PRODUCT_SUCCESS,
       payload: data,
@@ -104,9 +98,9 @@ export const createProduct = (productData) => async (dispatch) => {
       type: NEW_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
-    //console.log("ERROR",error)
   }
 };
+
 
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {
@@ -118,10 +112,6 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     const config = {
       headers: { "Content-Type": "application/json" },
     };
-    // const token=localStorage.getItem('usersAccessToken')
-
-    // const config = { headers: { "Content-Type": "multipart/form-data"} };
-
     const { data } = await axios.put(
       `http://localhost:5050/api/v1/admin/product/${id}`,
       productData,
@@ -141,6 +131,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     });
   }
 };
+
 
 // Delete Product
 export const deleteProduct = (id) => async (dispatch) => {
@@ -164,16 +155,12 @@ export const deleteProduct = (id) => async (dispatch) => {
 };
 
 
+
 // Get Products Details
 export const  getProductDetails = (id) => async (dispatch) => {
     try {
-      console.log("dispatch")
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
-      console.log("action came")
-      const { data } = await axios.get(`http://localhost:5050/api/v1/product/${id}`);
-      //console.log(data)
-      console.log("data",data)
-  
+      const { data } = await axios.get(`http://localhost:5050/api/v1/product/${id}`);  
       await dispatch({
         type: PRODUCT_DETAILS_SUCCESS,
         payload: data.product,
@@ -186,7 +173,8 @@ export const  getProductDetails = (id) => async (dispatch) => {
     }
   };
 
-  // NEW REVIEWproductController
+
+// New reviewproductController
 export const newReview = (reviewData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_REVIEW_REQUEST });
@@ -208,6 +196,7 @@ export const newReview = (reviewData) => async (dispatch) => {
     });
   }
 };
+
 
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {

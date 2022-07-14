@@ -20,7 +20,6 @@ cloudinary.config({
   });
 
 const url = process.env.DB_URI
-console.log(url)
 mongoose.connect("mongodb+srv://sneka:eGzSgZ8N3bnuqbNg@cluster0.5evyr.mongodb.net/SnekaEcommerce?retryWrites=true&w=majority")
 .then(() => {
     console.log("db got connected")
@@ -29,6 +28,7 @@ mongoose.connect("mongodb+srv://sneka:eGzSgZ8N3bnuqbNg@cluster0.5evyr.mongodb.ne
     app.listen(5050,() => console.log("listening to 5050"))
 })
 .catch(err => console.log("error : ",err.message))
+
 
 app.get('/',(req,res) => res.send("hello from 5050"))
 process.on("unhandledRejection", (err) => {
@@ -40,10 +40,3 @@ process.on("unhandledRejection", (err) => {
     });
   });
   
-
-  /**
-   * Connect String : 
-   *              mongodb+srv://sneka:eGzSgZ8N3bnuqbNg@cluster0.5evyr.mongodb.net/SnekaEcommerce?retryWrites=true&w=majority
-   * Password : 
-   *          eGzSgZ8N3bnuqbNg
-   */

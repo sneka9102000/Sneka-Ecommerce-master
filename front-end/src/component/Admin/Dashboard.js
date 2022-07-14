@@ -12,27 +12,14 @@ import { getAllUsers } from "../../actions/userAction.js";
 
 
 const Dashboard = () => {
+
   const dispatch = useDispatch();
-
   const { products } = useSelector((state) => state.products);
-  
   const { orders } = useSelector((state) => state.allOrders);
-
   const { users } = useSelector((state) => state.allUsers);
 
 
   let outOfStock = 0;
-
-  //   orders &&
-  //     orders.forEach((item) => {
-  //       totalAmount += item.totalPrice;
-  //     });
-  // products &&
-  //   products.forEach((item) => {
-  //     if (item.Stock === 0) {
-  //       outOfStock += 1;
-  //     }
-  //   });
 
   useEffect(() => {
     
@@ -41,22 +28,12 @@ const Dashboard = () => {
       dispatch(getAllUsers());
     },[dispatch]);
   
-    // let totalAmount = 0;
-    // orders &&
-    //   orders.forEach((item) => {
-    //     totalAmount += item.totalPrice;
-    //   });
-  
-
-
   return (
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
       <Sidebar />
-
       <div className="dashboardContainer">
         <Typography component="h1">Dashboard</Typography>
-
         <div className="dashboardSummary">
           <div>
             <p>
@@ -68,10 +45,6 @@ const Dashboard = () => {
               <p>Product</p>
               <p>{products&&products.length}</p>
             </Link>
-            {/* <Link to="/admin/orders">
-              <p>Orders</p>
-              <p>{orders && orders.length}</p>
-            </Link> */}
           </div>
         </div>
       </div>

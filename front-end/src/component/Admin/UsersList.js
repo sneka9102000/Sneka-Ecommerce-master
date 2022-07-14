@@ -13,12 +13,10 @@ import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
 const UsersList = ({ history }) => {
+
   const dispatch = useDispatch();
-
   const alert = useAlert();
-
   const { error, users } = useSelector((state) => state.allUsers);
-
   const {
     error: deleteError,
     isDeleted,

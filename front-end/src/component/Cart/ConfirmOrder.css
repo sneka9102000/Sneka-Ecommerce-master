@@ -24,13 +24,13 @@
   }
   
   .confirmshippingAreaBox > div {
-    display: flex;
     margin: 1vmax 0;
   }
   
   .confirmshippingAreaBox > div > p {
     font: 400 1vmax "Roboto";
     color: black;
+    display: inline;
   }
   .confirmshippingAreaBox > div > span {
     margin: 0 1vmax;

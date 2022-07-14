@@ -5,9 +5,6 @@ import {
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
-    LOAD_USER_REQUEST,
-    LOAD_USER_SUCCESS,
-    LOAD_USER_FAIL,
     LOGOUT_SUCCESS,
     LOGOUT_FAIL,
     UPDATE_PROFILE_REQUEST,
@@ -46,6 +43,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+
 // Register
 export const register = (userData) => async (dispatch) => {
   console.log("register",userData)
@@ -65,20 +63,8 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
-// // Load User
-// export const loadUser = () => async (dispatch) => {
-//   try {
-//     console.log("before dispatch")
-//     dispatch({ type: LOAD_USER_REQUEST });
-//     console.log("after dispatch")
-//     const { data } = await axios.get(`http://localhost:5050/api/v1/me`);
-//     //console.log("user"+data)
-//     console.log('after request')
-//     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-//   } catch (error) {
-//     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
-//   }
-// };
+
+
 
 // Logout User
 export const logout = () => async (dispatch) => {
@@ -90,18 +76,17 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
   }
 };
+
+
 // Update Profile
 export const updateProfile = (userData) => async (dispatch) => {
-  // const token=localStorage.getItem('usersAccessToken')
-  console.log(userData)
   try {
    dispatch({ type: UPDATE_PROFILE_REQUEST });
-   const token=localStorage.getItem('usersAccessToken')
+    const token=localStorage.getItem('usersAccessToken')
 
     const config = { headers: { "Content-Type": "multipart/form-data","Authorization":token } };
 
     const { data } = await axios.put(`http://localhost:5050/api/v1/me/update`, userData, config);
-    console.log("update "+data)
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
   } catch (error) {
@@ -111,6 +96,8 @@ export const updateProfile = (userData) => async (dispatch) => {
     });
   }
 };
+
+
 
 // Update Password
 export const updatePassword = (passwords) => async (dispatch) => {
@@ -134,6 +121,8 @@ export const updatePassword = (passwords) => async (dispatch) => {
   }
 };
 
+
+
 // get All Users
 export const getAllUsers = () => async (dispatch) => {
   try {
@@ -145,6 +134,8 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
   }
 };
+
+
 // Delete User
 export const deleteUser = (id) => async (dispatch) => {
   try {
@@ -168,10 +159,3 @@ export const clearErrors = () => async (dispatch) => {
 };
 
 
-/**
- * await axios.post(`http://localhost:5050/api/v1/register`, userData, config).
-    then((token) => {
-      console.log("token : ",token.data.token)
-      localStorage.setItem("accessToken",token.data.token)
-    })
- */
