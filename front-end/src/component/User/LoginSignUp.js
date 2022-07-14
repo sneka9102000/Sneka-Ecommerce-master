@@ -59,7 +59,7 @@ const LoginSignUp = ({ location }) => {
   const validRegister = () => {
     console.log("in validate Register")
 
-    const error = ValidateRegister(name,email,password)
+    const error = ValidateRegister(name,email,password,phone,address)
 
     let nameError = error.nameError;
     let emailError = error.emailError;
@@ -140,10 +140,12 @@ const LoginSignUp = ({ location }) => {
     console.log("Valid statement: "+isValid)
 
     let userObject = {
-      name, email, password, avatar, avatarPreview
+      name, email, password,address ,phone
     }
+    
 
     if (isValid) {
+    
       dispatch(register(userObject))
     }
   };

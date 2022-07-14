@@ -8,6 +8,7 @@ import {
 // import * as regex from './validationConstant/index'
 
 function ValidateRegister(name,email,password,phone,address) {
+    // console.log(phone)
     const regerror = {
         nameError: "",
         emailError : "",
@@ -39,13 +40,13 @@ function ValidateRegister(name,email,password,phone,address) {
     if (password === "") {
         regerror.passwordError = "Enter your password";
     }
-    else if (!PHONE_REGEX.test(password)) {
+    else if (!PASSWORD_REGEX.test(password)) {
         regerror.passwordError = "Minimum 7 characters required";
     }
     if (phone === "") {
         regerror.phoneError = "Enter your phone number";
     }
-    else if (!PASSWORD_REGEX.test(phone)) {
+    else if (!PHONE_REGEX.test(phone)) {
         regerror.phoneError = "Invalid phone number. Please correct and try again.";
     }
     if (address === "") {

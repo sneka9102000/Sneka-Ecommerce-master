@@ -27,10 +27,6 @@ import OrderList from "./component/Admin/OrderList";
 import UsersList from "./component/Admin/UsersList";
 
 
-
-
-
-
 function App(){
   const { isAuthenticated, user } = useSelector((state) => state.user)
 
@@ -50,12 +46,12 @@ function App(){
          <Route exact path="/me/update" element={<UpdateProfile/>} />
          <Route extact path="/cart" element={<Cart/>} />
          <Route extact path="/login" element={<LoginSignUp/>} />
-         <Route extact path="/shipping" element={<Shipping/>} />
-         <Route extact path="/order/confirm" element={<ConfirmOrder/>} />
-         <Route extact path="/orders" element={<MyOrders/>} />
-         <Route extact path="/order/:id" element={<OrderDetails/>} />
-         <Route extact path="/admin/dashboard" element={<Dashboard/>} />
-         <Route extact path="/success" element={<OrderSuccess/>} />
+
+         <Route extact path="/shipping" element={<ProtectedRoute><Shipping/></ProtectedRoute>} />
+         <Route extact path="/order/confirm" element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>} />
+         <Route extact path="/orders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>} />
+         <Route extact path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>} />
+         <Route extact path="/success" element={<ProtectedRoute><OrderSuccess/></ProtectedRoute>} />
          <Route
           isAdmin={true}
           exact
@@ -98,7 +94,7 @@ function App(){
 
 
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </Router>
 
   );

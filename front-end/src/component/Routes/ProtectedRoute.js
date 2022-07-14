@@ -2,16 +2,10 @@ import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
+const ProtectedRoute = ({ isAdmin, children }) => {
+  console.log("is admin",isAdmin)
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
 
-  return (
-    <Fragment>
-      {loading === false && (
-        <Routes>
-        <Route
-          {...rest}
-          render={(props) => {
             if (isAuthenticated === false) {
               return <Navigate to="/login" />;
             }
@@ -20,13 +14,8 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
               return <Navigate to="/login" />;
             }
 
-            return <Component {...props} />;
-          }}
-        />
-        </Routes>
-      )}
-    </Fragment>
-  );
-};
+            return children;
+      }
+
 
 export default ProtectedRoute;
