@@ -83,6 +83,7 @@ import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
       sortable: false,
       renderCell: (params) => {
         return (
+
           <Fragment>
             <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
               <EditIcon />
@@ -114,6 +115,7 @@ import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
     });
 
   return (
+
     <Fragment>
       <MetaData title={`ALL ORDERS - Admin`} />
 
@@ -135,5 +137,6 @@ import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
     </Fragment>
   );
 };
+
 
 export default OrderList;

@@ -14,7 +14,7 @@ import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import { useNavigate } from "react-router-dom";
 
-const NewProduct = ({ history }) => {
+const NewProduct = ({}) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate=useNavigate();
