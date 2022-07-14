@@ -41,8 +41,6 @@ const LoginSignUp = ({ location }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const emailField = document.getElementById('email');
-  const passwordField = document.getElementById('password');
 
   const [user, setUser] = useState({
     name: "",
@@ -71,14 +69,6 @@ const LoginSignUp = ({ location }) => {
     let passwordError = error.passwordError;
     let phoneError = error.phoneError;
     let addressError = error.addressError
-
-
-    // const nameField = document.getElementById('name');
-    // const emailField = document.getElementById('email');
-    // const passwordField = document.getElementById('password');
-    // const phoneField = document.getElementById('phone');
-    // const addressField = document.getElementById('address');
-
 
     if(nameError) {
         setNameError(nameError);

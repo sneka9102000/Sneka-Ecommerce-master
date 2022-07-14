@@ -31,6 +31,7 @@ const UpdateProfile = () => {
       }
 
     dispatch(updateProfile(userObject));
+  // navigate('/accout')
   };
 
   const updateProfileDataChange = (e) => {

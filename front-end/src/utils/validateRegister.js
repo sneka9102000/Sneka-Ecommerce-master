@@ -7,7 +7,6 @@ import {
   } from "./validationConstant/index.js";
 
 function ValidateRegister(name,email,password,phone,address) {
-    console.log("IN VALIDATRION PHONE : "+phone )
     const regerror = {
         nameError: "",
         emailError : "",
