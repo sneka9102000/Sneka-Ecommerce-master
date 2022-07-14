@@ -5,10 +5,9 @@ import {
     passwordRegex,
     addressRegex,
   } from "./validationConstant/index.js";
-// import * as regex from './validationConstant/index'
 
 function ValidateRegister(name,email,password,phone,address) {
-    // console.log(phone)
+    console.log("IN VALIDATRION PHONE : "+phone )
     const regerror = {
         nameError: "",
         emailError : "",

@@ -49,9 +49,11 @@ const LoginSignUp = ({ location }) => {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    address: "",
   });
 
-  const { name, email, password,phone,address} = user;
+  const { name, email, password, phone, address} = user;
 
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -59,7 +61,11 @@ const LoginSignUp = ({ location }) => {
   const validRegister = () => {
     console.log("in validate Register")
 
+    console.log("Phone : ", phone);
+
     const error = ValidateRegister(name,email,password,phone,address)
+
+    console.log("ERROR : "+error.phoneError)
 
     let nameError = error.nameError;
     let emailError = error.emailError;
@@ -68,11 +74,11 @@ const LoginSignUp = ({ location }) => {
     let addressError = error.addressError
 
 
-    const nameField = document.getElementById('name');
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const phoneField = document.getElementById('phone');
-    const addressField = document.getElementById('address');
+    // const nameField = document.getElementById('name');
+    // const emailField = document.getElementById('email');
+    // const passwordField = document.getElementById('password');
+    // const phoneField = document.getElementById('phone');
+    // const addressField = document.getElementById('address');
 
 
     if(nameError) {
@@ -140,16 +146,14 @@ const LoginSignUp = ({ location }) => {
     console.log("Valid statement: "+isValid)
 
     let userObject = {
-      name, email, password,address ,phone
+      name, email, password, address, phone, avatarPreview, avatar
     }
     
-
     if (isValid) {
-    
+      console.log(userObject)
       dispatch(register(userObject))
     }
   };
-
 
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
@@ -161,8 +165,6 @@ const LoginSignUp = ({ location }) => {
           setAvatar(reader.result);
         }
       };
-
-
       reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });

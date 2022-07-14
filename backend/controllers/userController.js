@@ -16,12 +16,14 @@ class UserController {
       width: 150,
       crop: "scale",
     });
-    const { name, email, password } = req.body;
+    const { name, email, password, phone, address } = req.body;
 
     const hashedPass = await bcrypt.hash(password, 10)
     const user = await User.create({
       name,
       email,
+      phone,
+      address,
       password: hashedPass,
       avatar: {
         public_id: myCloud.public_id,
