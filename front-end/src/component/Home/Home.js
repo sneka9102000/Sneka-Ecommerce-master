@@ -35,7 +35,7 @@ const Home = () => {
 
             <a href="#brands">
               <button>
-                Scroll 
+                EXPLORE !
               </button>
             </a>
           </div>

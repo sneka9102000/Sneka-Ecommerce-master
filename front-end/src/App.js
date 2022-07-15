@@ -26,7 +26,6 @@ import UpdateProduct from "./component/Admin/UpdateProduct.js";
 import OrderList from "./component/Admin/OrderList";
 import UsersList from "./component/Admin/UsersList";
 
-
 function App(){
   const { isAuthenticated, user } = useSelector((state) => state.user)
 
@@ -44,25 +43,27 @@ function App(){
          <Route extact path="/search" element={<Search/>} />
          <Route exact path="/account" element={<Profile/>} />
          <Route exact path="/me/update" element={<UpdateProfile/>} />
-         <Route extact path="/cart" element={<Cart/>} />
+         <Route extact path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
          <Route extact path="/login" element={<LoginSignUp/>} />
-
          <Route extact path="/shipping" element={<ProtectedRoute><Shipping/></ProtectedRoute>} />
          <Route extact path="/order/confirm" element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>} />
          <Route extact path="/orders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>} />
          <Route extact path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>} />
          <Route extact path="/success" element={<ProtectedRoute><OrderSuccess/></ProtectedRoute>} />
          <Route
-          isAdmin={true}
+          // isAdmin={true}
           exact
+          role={"admin"}
           path="/admin/dashboard"
-          element={<Dashboard/>}
+          element={
+          <ProtectedRoute><Dashboard/></ProtectedRoute>}
         />
         <Route
           exact
+          role={"admin"}
           path="/admin/product"
           isAdmin={true}
-          element={<NewProduct/>}
+          element={<ProtectedRoute><NewProduct/></ProtectedRoute>}
         />
         <Route
           exact

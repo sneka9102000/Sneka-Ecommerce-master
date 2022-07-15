@@ -20,15 +20,30 @@ const LoginSignUp = ({ location }) => {
   const alert = useAlert();
   const navigate = useNavigate();
 
-  let [emailError, setEmailError] = useState("");
-  let [passwordError, setPasswordError] = useState("");
-  let [nameError, setNameError] = useState("");
-  let [phoneError,setPhoneError] = useState("");
-  let [addressError,setAddressError] = useState("");
+  // let [emailError, setEmailError] = useState("");
+  // let [passwordError, setPasswordError] = useState("");
+  // let [nameError, setNameError] = useState("");
+  // let [phoneError,setPhoneError] = useState("");
+  // let [addressError,setAddressError] = useState("");
+
+  const defaulterror = {
+    nameError: "",
+    emailError : "",
+    passwordError : "",
+    phoneError: "",
+    addressError:""
+}
+    const defaultloginerror = {
+      loginEmailError : "",
+      loginPasswordError : ""
+    }
+  const [ {emailError,passwordError,nameError,phoneError,addressError},setError]=useState(defaulterror);
+
+  const [ {loginEmailError,loginPasswordError},setloginError]=useState(defaultloginerror)
 
 
-  let [loginEmailError, setLoginEmailError] = useState("");
-  let [loginPasswordError, setLoginPasswordError] = useState("");
+  // let [loginEmailError, setLoginEmailError] = useState("");
+  // let [loginPasswordError, setLoginPasswordError] = useState("");
 
   const { error, isAuthenticated } = useSelector(
     (state) => state.user
@@ -40,7 +55,6 @@ const LoginSignUp = ({ location }) => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
 
   const [user, setUser] = useState({
     name: "",
@@ -56,67 +70,35 @@ const LoginSignUp = ({ location }) => {
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const validRegister = () => {
-    console.log("in validate Register")
 
-    console.log("Phone : ", phone);
+    const error = ValidateRegister(name, email, password, phone, address)
 
-    const error = ValidateRegister(name,email,password,phone,address)
-
-    console.log("ERROR : "+error.phoneError)
-
-    let nameError = error.nameError;
-    let emailError = error.emailError;
-    let passwordError = error.passwordError;
-    let phoneError = error.phoneError;
-    let addressError = error.addressError
-
-    if(nameError) {
-        setNameError(nameError);
-    } 
-    
-    if(emailError) {
-        setEmailError(emailError);
+    if(error===true)
+    {
+      setError(defaulterror)
+      return true;
     }
-    
-    if (passwordError) {
-        setPasswordError(passwordError)
+    else
+    {
+      setError(error)
     }
-    if(phoneError){
-        setPhoneError(phoneError)
-    }
-    if(addressError){
-        setAddressError(addressError)
-    }
-
-    if(nameError || emailError || passwordError || phoneError || addressError) {
-        return false;
-    }
-
-    return true
 
 }
 
   const validLogin = () => {
 
     const error = ValidateLogin(loginEmail, loginPassword)
-
-    let emailError = error.emailError;
-    let passwordError = error.passwordError;
-
-    if (emailError) {
-      setLoginEmailError(emailError);
+    console.log("loginerror:" , error)
+    if(error===true)
+      {
+        setloginError(defaultloginerror)
+        return true;
+      }
+      else
+      {
+        setloginError(error)
+      }
     }
-
-    if (passwordError) {
-      setLoginPasswordError(passwordError)
-    }
-
-    if (emailError || passwordError) {
-      return false;
-    }
-
-    return true
-  }
 
 
   const loginSubmit = (e) => {
@@ -132,14 +114,14 @@ const LoginSignUp = ({ location }) => {
 
     const isValid = validRegister()
 
-    console.log("Valid statement: "+isValid)
+    // console.log("Valid statement: "+isValid)
 
     let userObject = {
       name, email, password, address, phone, avatarPreview, avatar
     }
     
     if (isValid) {
-      console.log(userObject)
+      // console.log(userObject)
       dispatch(register(userObject))
     }
   };
@@ -294,11 +276,14 @@ const LoginSignUp = ({ location }) => {
               <strong>{passwordError}</strong>
             </div>
 
-            <div id="registerImage">
+            <div id="registerImage" style={{display:"block"}}>
+              <labe >Upload Profile img</labe>
               <input
                 type="file"
+                placeholder="Upload your proile pic"
                 name="avatar"
                 accept="image/*"
+                style={{color:"white"}}
                 onChange={registerDataChange}
               />
             </div>
