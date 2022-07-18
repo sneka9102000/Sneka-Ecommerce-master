@@ -9,6 +9,7 @@ const cloudinary = require("cloudinary");
 class UserController {
 
   registerUser = catchAsyncErrors(async (req, res, next) => {
+    console.log("came")
     
     try {
       const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
@@ -16,7 +17,8 @@ class UserController {
       width: 150,
       crop: "scale",
     });
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address,confirmpassword} = req.body;
+    console.log(req.body)
 
     const hashedPass = await bcrypt.hash(password, 10)
     const user = await User.create({
@@ -24,6 +26,7 @@ class UserController {
       email,
       phone,
       address,
+      confirmpassword,
       password: hashedPass,
       avatar: {
         public_id: myCloud.public_id,
@@ -33,6 +36,7 @@ class UserController {
     sendToken(user, 201, res);
   } 
   catch (err) {
+    console.log(err)
     res.status(500).json({error: err})
   }
   });

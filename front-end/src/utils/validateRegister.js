@@ -6,11 +6,12 @@ import {
     addressRegex,
   } from "./validationConstant/index.js";
 
-function ValidateRegister(name,email,password,phone,address) {
+function ValidateRegister(name,email,password,phone,address,confirmpassword) {
     const regerror = {
         nameError: "",
         emailError : "",
         passwordError : "",
+        confirmpasswordError:"",
         phoneError: "",
         addressError:""
     }
@@ -41,6 +42,12 @@ function ValidateRegister(name,email,password,phone,address) {
     else if (!PASSWORD_REGEX.test(password)) {
         regerror.passwordError = "Minimum 7 characters required";
     }
+    if (confirmpassword === "") {
+        regerror.confirmpasswordError = "Re-enter your password";
+    }
+    else if (password!=confirmpassword) {
+        regerror.confirmpasswordError = "Passwords do not match";
+    }
     if (phone === "") {
         regerror.phoneError = "Enter your phone number";
     }
@@ -54,7 +61,9 @@ function ValidateRegister(name,email,password,phone,address) {
         regerror.addressError = "Invalid address. Please correct and try again.";
     }
 
-    if (regerror.emailError || regerror.passwordError || regerror.nameError || regerror.phoneError || regerror.addressError ) {
+    if (regerror.emailError || regerror.passwordError || regerror.nameError || regerror.phoneError || regerror.addressError || regerror.confirmpasswordError) {
+        console.log(regerror)
+
         return regerror;
     }
 

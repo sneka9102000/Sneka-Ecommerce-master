@@ -21,6 +21,8 @@
 .signUpPassword,
 .signUpPhone,
 .signUpAddress,
+.signUpConfirmPassword,
+.signUpProfile,
 .registerImage {
   color:red;
   display: inline !important;

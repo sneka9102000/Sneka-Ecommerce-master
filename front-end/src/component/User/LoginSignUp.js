@@ -16,35 +16,25 @@ import ValidateRegister from "../../utils/validateRegister";
 
 
 const LoginSignUp = ({ location }) => {
+
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-
-  // let [emailError, setEmailError] = useState("");
-  // let [passwordError, setPasswordError] = useState("");
-  // let [nameError, setNameError] = useState("");
-  // let [phoneError,setPhoneError] = useState("");
-  // let [addressError,setAddressError] = useState("");
 
   const defaulterror = {
     nameError: "",
     emailError : "",
     passwordError : "",
     phoneError: "",
-    addressError:""
+    addressError:"",
+    confirmpasswordError:""
 }
     const defaultloginerror = {
       loginEmailError : "",
       loginPasswordError : ""
-    }
-  const [ {emailError,passwordError,nameError,phoneError,addressError},setError]=useState(defaulterror);
-
+}
+  const [ {emailError,passwordError,nameError,phoneError,addressError,confirmpasswordError},setError]=useState(defaulterror);
   const [ {loginEmailError,loginPasswordError},setloginError]=useState(defaultloginerror)
-
-
-  // let [loginEmailError, setLoginEmailError] = useState("");
-  // let [loginPasswordError, setLoginPasswordError] = useState("");
-
   const { error, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -60,19 +50,18 @@ const LoginSignUp = ({ location }) => {
     name: "",
     email: "",
     password: "",
+    confirmpassword:"",
     phone: "",
     address: "",
   });
 
-  const { name, email, password, phone, address} = user;
-
+  const { name, email, password, phone, address,confirmpassword} = user;
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const validRegister = () => {
 
-    const error = ValidateRegister(name, email, password, phone, address)
-
+    const error = ValidateRegister(name, email, password, phone, address,confirmpassword)
     if(error===true)
     {
       setError(defaulterror)
@@ -88,7 +77,6 @@ const LoginSignUp = ({ location }) => {
   const validLogin = () => {
 
     const error = ValidateLogin(loginEmail, loginPassword)
-    console.log("loginerror:" , error)
     if(error===true)
       {
         setloginError(defaultloginerror)
@@ -104,24 +92,18 @@ const LoginSignUp = ({ location }) => {
   const loginSubmit = (e) => {
     e.preventDefault();
     const isValid = validLogin();
-    console.log(isValid)
     if (isValid) {
       dispatch(login(loginEmail, loginPassword))
     }
   };
   const registerSubmit = (e) => {
     e.preventDefault();
-
     const isValid = validRegister()
-
-    // console.log("Valid statement: "+isValid)
-
     let userObject = {
-      name, email, password, address, phone, avatarPreview, avatar
+      name, email, password, address, phone, avatarPreview, avatar,confirmpassword
     }
     
     if (isValid) {
-      // console.log(userObject)
       dispatch(register(userObject))
     }
   };
@@ -147,7 +129,6 @@ const LoginSignUp = ({ location }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-
     if (isAuthenticated) {
       navigate(window.location.search ? location.search.split("=")[1] : "/account");
     }
@@ -275,9 +256,30 @@ const LoginSignUp = ({ location }) => {
               />
               <strong>{passwordError}</strong>
             </div>
+            <div className="signUpConfirmPassword">
+              <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
+              <input
+                type="password"
+                placeholder="Confirm your Password"
+                id="userconfirmpassword"
+                name="confirmpassword"
+                value={confirmpassword}
+                onChange={registerDataChange}
+              />
+              <strong>{confirmpasswordError}</strong>
+            </div>
+            <div className="signUpProfile">
+              <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
+              <input
+                type="password"
+                placeholder="Upload your profile pic below"
+              />
+              {/* <strong>{confirmpasswordError}</strong> */}
+            </div>
+
 
             <div id="registerImage" style={{display:"block"}}>
-              <labe >Upload Profile img</labe>
+              {/* <label>Upload Profile img</label> */}
               <input
                 type="file"
                 placeholder="Upload your proile pic"
