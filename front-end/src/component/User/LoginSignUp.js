@@ -269,28 +269,20 @@ const LoginSignUp = ({ location }) => {
               <strong>{confirmpasswordError}</strong>
             </div>
             <div className="signUpProfile">
-              <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
-              <input
-                type="password"
-                placeholder="Upload your profile pic below"
-              />
-              {/* <strong>{confirmpasswordError}</strong> */}
+              <p>UPLOAD YOUR PROFILE PIC BELOW</p>
             </div>
 
-
-            <div id="registerImage" style={{display:"block"}}>
-              {/* <label>Upload Profile img</label> */}
+            <div id="registerImage">  
+            <img src={avatarPreview} alt="Avatar Preview" />
               <input
                 type="file"
-                placeholder="Upload your proile pic"
                 name="avatar"
                 accept="image/*"
-                style={{color:"white"}}
                 onChange={registerDataChange}
               />
             </div>
             <input type="submit" value="Register" className="signUpBtn" />
-          </form>
+          </form> 
         </div>
       </div>
     </div>
@@ -298,3 +290,6 @@ const LoginSignUp = ({ location }) => {
 }
 
 export default LoginSignUp;
+
+
+// style={{display:"block"}}

@@ -18,7 +18,6 @@ class UserController {
       crop: "scale",
     });
     const { name, email, password, phone, address,confirmpassword} = req.body;
-    console.log(req.body)
 
     const hashedPass = await bcrypt.hash(password, 10)
     const user = await User.create({
