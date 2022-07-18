@@ -38,7 +38,6 @@ const Header = () => {
    <div style={{display:"inline",position:"absolute",float:"right",margin:"0 0 0 80%",padding:"0 0 0 0",height:"100px"}}>
     <nav style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
     <nav style={{float:"right",display:"inline"}}>
-    <Link to="/search"><SearchIcon style={{fontSize:"50px"}}/></Link>
     <Link to='/cart' ><ShoppingCartIcon style={{fontSize:"50px"}}/></Link>
     <Link to="/login"><AccountCircleIcon style={{fontSize:"50px"}}/></Link>
     </nav>
