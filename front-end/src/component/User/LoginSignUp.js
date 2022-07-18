@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
-import "../User/User.css";
+import "../../assets/styles/index.css";
 import Loader from "../layout/Loader/loader";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
