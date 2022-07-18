@@ -24,7 +24,6 @@ isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (roles != req.user.role) {
-    console.log("not authorized")
       return next(
         new ErrorHandler(
           `Role: ${req.user.role} is not allowed to access this resouce `,
