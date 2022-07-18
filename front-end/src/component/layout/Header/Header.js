@@ -1,5 +1,5 @@
 import React from "react";
-import img from '../../../images/logo.webp';
+import img from '../../../assets/images/logo.webp';
 import { ReactNavbar} from "overlay-navbar"
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';

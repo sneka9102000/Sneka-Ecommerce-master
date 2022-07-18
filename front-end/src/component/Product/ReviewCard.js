@@ -1,7 +1,7 @@
 // import { Rating } from "@material-ui/lab";
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-import profilePng from "../../images/Profile.png";
+import profilePng from "../../assets/images/Profile.png";
 
 const ReviewCard = (props) => {
     console.log("called",props.review)
@@ -13,7 +13,6 @@ const ReviewCard = (props) => {
     value: props.review.rating,
     isHalf:true,
   };
-//   console.log("reivew",props.review.length)
 
   return (
     <div className="reviewCard">
