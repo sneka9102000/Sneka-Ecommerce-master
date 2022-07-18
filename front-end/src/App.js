@@ -3,10 +3,7 @@ import Header from "./component/layout/Header/Header.js";
 import React from "react";
 import Home from "./component/Home/Home";
 import ProductDetails from "./component/Product/ProductDetails.js";
-import Products from "./component/Product/Products.js";
-import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
-import store from "./store";
 import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
@@ -37,9 +34,6 @@ function App(){
       <Routes>
          <Route path="/" element={<Home/>} />
          <Route extact path="/product/:id" element={<ProductDetails/>} /> 
-         <Route extact path="/products" element={<Products/>} />
-         <Route extact path="/products/:keyword" element={<Products match/>} />
-         <Route extact path="/search" element={<Search/>} />
          <Route exact path="/account" element={<Profile/>} />
          <Route exact path="/me/update" element={<UpdateProfile/>} />
          <Route extact path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
@@ -92,7 +86,6 @@ function App(){
 
 
       </Routes>
-      {/* <Footer/> */}
     </Router>
 
   );
