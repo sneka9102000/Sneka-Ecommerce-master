@@ -290,6 +290,4 @@ const LoginSignUp = ({ location }) => {
 }
 
 export default LoginSignUp;
-
-
 // style={{display:"block"}}
