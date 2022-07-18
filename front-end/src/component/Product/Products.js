@@ -22,11 +22,8 @@ const categories = [
 ];
 
 const Products = ({ match }) => {
-    //console.log("match : ",match)
   const dispatch = useDispatch();
-
   const alert = useAlert();
-
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("");
@@ -59,7 +56,6 @@ const Products = ({ match }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    //console.log("keyword from products : ",keyword)
     dispatch(getProduct(keyword,currentPage,price, category, ratings));
   }, [dispatch, keyword,currentPage,price, category, ratings, alert, error]);
 

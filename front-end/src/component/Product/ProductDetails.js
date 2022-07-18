@@ -31,10 +31,10 @@ const navigate = useNavigate();
 
     useEffect(()=>{
       dispatch(getProductDetails(id));
-      // if(error){
-      //   alert.error(error);
-      //   dispatch(clearErrors());
-      // }
+      if(error){
+        alert.error(error);
+        dispatch(clearErrors());
+      }
 
     },[dispatch,id,error,alert]);
 
@@ -103,26 +103,18 @@ const navigate = useNavigate();
       dispatch(getProductDetails(id));
     }, [dispatch,id,error,alert]);
     
-    // console.log("product",product.images[0].url)
-    console.log("authenticated",isAuthenticated)
     if(product)
     {
       return (
         <Fragment>
             <div className="ProductDetails"> 
               <div>
-              {/* <img
-                      className="CarouselImage"
-                      src={product.images[0].url}
-                      alt={`image`}
-                    /> */}
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
                       className="SingleProduct"
                       key={i}
                       src={item.url}
-                      alt={`${i} Slide`}
                     />
                   ))}
               </div>
@@ -133,7 +125,6 @@ const navigate = useNavigate();
               </div>
               <div className="detailsBlock-2">
                 <ReactStars {...options} />
-                <span >({product.numOfReviews} Reviews)</span>
               </div>
               <div className="detailsBlock-3">
                 <h1>{`₹${product.price}`}</h1>
@@ -162,28 +153,28 @@ const navigate = useNavigate();
                 Description : <p>{product.description}</p>
               </div>
 
-              <button onClick={submitReviewToggle} className="submitReview">
+              {/* <button onClick={submitReviewToggle} className="submitReview">
                 Submit Review
-              </button>
+              </button> */}
             </div>
           </div>
 
-          <h3 className="reviewsHeading">REVIEWS</h3>
+          {/* <h3 className="reviewsHeading">REVIEWS</h3> */}
 
-          <Dialog
+          {/* <Dialog
             aria-labelledby="simple-dialog-title"
             open={open}
             onClose={submitReviewToggle}
-          >
-            <DialogTitle>Submit Review</DialogTitle>
+          > */}
+            {/* <DialogTitle>Submit Review</DialogTitle>
             <DialogContent className="submitDialog">
               <ReactStars
                 onChange={(e) => setRating(e.target.value)}
                 value={rating}
                 size="large"
-              />
+              /> */}
 
-              <textarea
+              {/* <textarea
                 className="submitDialogTextArea"
                 cols="30"
                 rows="5"
@@ -210,7 +201,7 @@ const navigate = useNavigate();
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>
-          )}
+          )} */}
          
         </Fragment>
     );
