@@ -1,10 +1,11 @@
 import {
-    nameRegex,
-    emailRegex,
-    phoneRegex,
-    passwordRegex,
-    addressRegex,
-  } from "./validationConstant/index.js";
+    NAME_REGEX,
+    EMAIL_REGEX,
+    PASSWORD_REGEX,
+    PHONE_REGEX,
+    ADDRESS_REGEX
+    
+  } from "../constants/validationConstant/index.js";
 
 function ValidateRegister(name,email,password,phone,address,confirmpassword) {
     const regerror = {
@@ -15,13 +16,7 @@ function ValidateRegister(name,email,password,phone,address,confirmpassword) {
         phoneError: "",
         addressError:""
     }
-
-    const NAME_REGEX = nameRegex;
-    const EMAIL_REGEX = emailRegex;
-    const PHONE_REGEX = phoneRegex;
-    const PASSWORD_REGEX = passwordRegex;
-    const ADDRESS_REGEX = addressRegex;
-
+   
     if (name === "") {
         regerror.nameError = "Enter your name";
     }

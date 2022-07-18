@@ -51,7 +51,6 @@ function App(){
          <Route extact path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>} />
          <Route extact path="/success" element={<ProtectedRoute><OrderSuccess/></ProtectedRoute>} />
          <Route
-          // isAdmin={true}
           exact
           role={"admin"}
           path="/admin/dashboard"
@@ -62,35 +61,34 @@ function App(){
           exact
           role={"admin"}
           path="/admin/product"
-          isAdmin={true}
           element={<ProtectedRoute><NewProduct/></ProtectedRoute>}
         />
         <Route
           exact
           path="/admin/products"
-          isAdmin={true}
-          element={<ProductList/>}
+          role={"admin"}
+          element={<ProtectedRoute><ProductList/></ProtectedRoute>}
         />
 
         <Route
           exact
           path="/admin/product/:id"
-          isAdmin={true}
-          element={<UpdateProduct/>}
+          role={"admin"}
+          element={<ProtectedRoute><UpdateProduct/></ProtectedRoute>}
         />
 
         <Route
           exact
           path="/admin/orders"
-          isAdmin={true}
-          element={<OrderList/>}
+          role={"admin"}
+          element={<ProtectedRoute><OrderList/></ProtectedRoute>}
         />
 
         <Route
           exact
           path="/admin/users"
-          isAdmin={true}
-          element={<UsersList/>}
+          role={"admin"}
+          element={<ProtectedRoute><UsersList/></ProtectedRoute>}
         />
 
 

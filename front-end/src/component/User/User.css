@@ -31,7 +31,7 @@
 .LoginSignUpBox {
   background-color: white;
   width: 25vw;
-  height: 70vh;
+  height: 80vh;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -71,7 +71,7 @@
   margin: auto;
   padding: 2vmax;
   justify-content: space-evenly;
-  height: 70%;
+  height: 75%;
   transition: all 0.5s;
 }
 
