@@ -20,7 +20,6 @@ const OrderDetails = ({ match }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    console.log("user ",user.user)
     dispatch(getOrderDetails(match.params.id));
   }, [dispatch, alert, error, match.params.id]);
   return (

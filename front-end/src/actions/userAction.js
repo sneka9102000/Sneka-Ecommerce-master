@@ -10,9 +10,6 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
-    UPDATE_PASSWORD_REQUEST,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_FAIL,
     ALL_USERS_REQUEST,
     ALL_USERS_SUCCESS,
     ALL_USERS_FAIL,
@@ -64,8 +61,6 @@ export const register = (userData) => async (dispatch) => {
 };
 
 
-
-
 // Logout User
 export const logout = () => async (dispatch) => {
   try {
@@ -98,31 +93,6 @@ export const updateProfile = (userData) => async (dispatch) => {
 };
 
 
-
-// Update Password
-export const updatePassword = (passwords) => async (dispatch) => {
-  try {
-    dispatch({ type: UPDATE_PASSWORD_REQUEST });
-
-    const config = { headers: { "Content-Type": "application/json" } };
-
-    const { data } = await axios.put(
-      `http://localhost:5050/api/v1/password/update`,
-      passwords,
-      config
-    );
-
-    dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_PASSWORD_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-
-
 // get All Users
 export const getAllUsers = () => async (dispatch) => {
   try {
@@ -132,23 +102,6 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
-  }
-};
-
-
-// Delete User
-export const deleteUser = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DELETE_USER_REQUEST });
-
-    const { data } = await axios.delete(`http://localhost:5050/api/v1/admin/user/${id}`);
-
-    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: DELETE_USER_FAIL,
-      payload: error.response.data.message,
-    });
   }
 };
 
