@@ -3,14 +3,13 @@ import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import "./ConfirmOrder.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 
-const ConfirmOrder = ({ history }) => {
+const ConfirmOrder = ({}) => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const state = useSelector((state) => state.user);
-  console.log(state)
   const navigate = useNavigate();
 
   const subtotal = cartItems.reduce(
@@ -19,13 +18,9 @@ const ConfirmOrder = ({ history }) => {
   );
 
   const shippingCharges = subtotal > 1000 ? 0 : 200;
-
   const tax = subtotal * 0.18;
-
   const totalPrice = subtotal + tax + shippingCharges;
-
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
-
   const proceedToPayment = () => {
     const data = {
       subtotal,
@@ -35,7 +30,6 @@ const ConfirmOrder = ({ history }) => {
     };
 
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-
     navigate("/success");
   };
 

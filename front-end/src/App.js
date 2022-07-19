@@ -13,7 +13,6 @@ import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import OrderSuccess from "./component/Cart/OrderSuccess";
-import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
@@ -31,6 +30,7 @@ function App(){
       {isAuthenticated && <UserOptions user={user} />}
 
       <Routes>
+        
          <Route path="/" element={<Home/>} />
          <Route extact path="/product/:id" element={<ProductDetails/>} /> 
          <Route exact path="/account" element={<Profile/>} />
@@ -39,11 +39,10 @@ function App(){
          <Route extact path="/login" element={<LoginSignUp/>} />
          <Route extact path="/shipping" element={<ProtectedRoute><Shipping/></ProtectedRoute>} />
          <Route extact path="/order/confirm" element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>} />
-         <Route extact path="/orders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>} />
          <Route extact path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>} />
          <Route extact path="/success" element={<ProtectedRoute><OrderSuccess/></ProtectedRoute>} />
 
-         
+
          <Route
           exact
           role={"admin"}
