@@ -20,7 +20,6 @@ import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct.js";
 import UpdateProduct from "./component/Admin/UpdateProduct.js";
 import OrderList from "./component/Admin/OrderList";
-import UsersList from "./component/Admin/UsersList";
 
 function App(){
   const { isAuthenticated, user } = useSelector((state) => state.user)
@@ -43,12 +42,13 @@ function App(){
          <Route extact path="/orders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>} />
          <Route extact path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>} />
          <Route extact path="/success" element={<ProtectedRoute><OrderSuccess/></ProtectedRoute>} />
+
+         
          <Route
           exact
           role={"admin"}
           path="/admin/dashboard"
-          element={
-          <ProtectedRoute><Dashboard/></ProtectedRoute>}
+          element={<ProtectedRoute><Dashboard/></ProtectedRoute>}
         />
         <Route
           exact
@@ -76,14 +76,6 @@ function App(){
           role={"admin"}
           element={<ProtectedRoute><OrderList/></ProtectedRoute>}
         />
-
-        <Route
-          exact
-          path="/admin/users"
-          role={"admin"}
-          element={<ProtectedRoute><UsersList/></ProtectedRoute>}
-        />
-
 
       </Routes>
     </Router>

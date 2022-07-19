@@ -39,13 +39,6 @@ const UpdateProduct = ({ match }) => {
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  // const [state, setState] = useState({
-  //   name: "",
-  //   price: "",
-  //   description: "",
-  //   password: "",
-  // });
-
   const categories = [
     "Titan",
     "Sonata",
@@ -58,9 +51,7 @@ const UpdateProduct = ({ match }) => {
 
   const {id} = useParams();
   const productId=id;
-  console.log(productId)
-  //      getProductDetails(productId)
-  //console.log(product.name)
+
   useEffect(() => {
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
@@ -102,24 +93,9 @@ const UpdateProduct = ({ match }) => {
     updateError,
   ]);
 
-  console.log("product",product)
-
   const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
-    // const myForm = new FormData();
-
-    // myForm.set("name", name);
-    // myForm.set("price", price);
-    // myForm.set("description", description);
-    // myForm.set("category", category);
-    // myForm.set("Stock", Stock);
-
-    // images.forEach((image) => {
-    //   myForm.append("images", image);
-    // });
-
-    console.log(name,price,description,category,Stock,)
     let productObj={
       "name":name,
       "price":price,

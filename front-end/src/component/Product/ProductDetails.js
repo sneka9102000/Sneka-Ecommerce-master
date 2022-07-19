@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails,clearErrors,newReview } from "../../actions/productAction";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-import ReviewCard from "./ReviewCard.js";
 import { useAlert } from "react-alert";
 import { addItemsToCart } from "../../actions/cartAction";
 
@@ -125,10 +124,6 @@ const navigate = useNavigate();
               <div className="detailsBlock-4">
                 Description : <p>{product.description}</p>
               </div>
-
-              {/* <button onClick={submitReviewToggle} className="submitReview">
-                Submit Review
-              </button> */}
             </div>
           </div>
          
