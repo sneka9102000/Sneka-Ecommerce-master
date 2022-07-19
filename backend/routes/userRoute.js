@@ -1,5 +1,4 @@
 const express = require("express");
-const { isAuthenticatedUser,authorizeRoles } = require("../middleware/auth")
 const UserController = require('../controllers/userController')
 const Authentication = require('../middleware/auth.js')
 const userController = new UserController()

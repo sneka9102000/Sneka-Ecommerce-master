@@ -1,6 +1,4 @@
 const express = require ("express");
-const { getAllProducts,createProduct, updateProduct, deleteProduct, getProductDetails, createProductReview, getProductReviews, deleteReview } = require("../controllers/productController");
-const {isAuthenticatedUser,authorizeRoles} = require("../middleware/auth");
 const ProductController = require('../controllers/productController')
 const Authentication = require('../middleware/auth.js')
 const productController = new ProductController()

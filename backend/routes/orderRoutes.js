@@ -1,5 +1,4 @@
 const express = require("express");
-const { newOrder, getSingleOrder, userOrders ,getAllOrders,updateOrder,deleteOrder } = require("../controllers/orderController");
 const OrderController = require('../controllers/orderController')
 const Authentication = require ('../middleware/auth.js')
 const orderController = new OrderController()

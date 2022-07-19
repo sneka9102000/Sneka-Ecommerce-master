@@ -15,14 +15,13 @@ isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, async (err, token) => {
     const user = await User.findById(token.id)
     req.user = user;
-    console.log(user)
     next();
   })
 });
 
 
 authorizeRoles = (...roles) => {
-  return (req, res, next) => {
+  return (req, next) => {
     if (roles != req.user.role) {
       return next(
         new ErrorHandler(
@@ -31,7 +30,6 @@ authorizeRoles = (...roles) => {
         )
       );
     }
-  console.log("authorized")
     next();
   };
 };
